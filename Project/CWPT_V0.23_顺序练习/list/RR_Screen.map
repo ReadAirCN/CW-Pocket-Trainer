@@ -1,0 +1,499 @@
+Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
+
+==============================================================================
+
+Section Cross References
+
+    main.o(i.HardWare_Init) refers to debug.o(i.Delay_Init) for Delay_Init
+    main.o(i.HardWare_Init) refers to ch32f10x_misc.o(i.NVIC_PriorityGroupConfig) for NVIC_PriorityGroupConfig
+    main.o(i.HardWare_Init) refers to debug.o(i.USART_Printf_Init) for USART_Printf_Init
+    main.o(i.HardWare_Init) refers to oled.o(i.OLED_Init) for OLED_Init
+    main.o(i.HardWare_Init) refers to key.o(i.Button_Init) for Button_Init
+    main.o(i.HardWare_Init) refers to key.o(i.DKEY_Init) for DKEY_Init
+    main.o(i.HardWare_Init) refers to corealgo.o(i.MorseTree_Init) for MorseTree_Init
+    main.o(i.main) refers to main.o(i.HardWare_Init) for HardWare_Init
+    main.o(i.main) refers to oled.o(i.OLED_ShowString) for OLED_ShowString
+    main.o(i.main) refers to oled.o(i.OLED_Refresh_Gram) for OLED_Refresh_Gram
+    main.o(i.main) refers to key.o(i.Button_Scan) for Button_Scan
+    main.o(i.main) refers to oled.o(i.OLED_ShowIntNum) for OLED_ShowIntNum
+    main.o(i.main) refers to corealgo.o(i.searchMorseCode) for searchMorseCode
+    main.o(i.main) refers to oled.o(i.OLED_ShowChar) for OLED_ShowChar
+    main.o(i.main) refers to noretval__2printf.o(.text) for __2printf
+    main.o(i.main) refers to debug.o(i.delay_ms) for delay_ms
+    main.o(i.main) refers to corealgo.o(.bss) for MorseTreeRoot
+    main.o(i.main) refers to main.o(.data) for MorseDictionary
+    main.o(i.main) refers to corealgo.o(.data) for MorseDictionary
+    main.o(.data) refers to main.o(.conststring) for .conststring
+    system_ch32f10x.o(i.SetSysClock) refers to system_ch32f10x.o(i.SetSysClockTo72_HSE) for SetSysClockTo72_HSE
+    system_ch32f10x.o(i.SystemCoreClockUpdate) refers to system_ch32f10x.o(.data) for SystemCoreClock
+    system_ch32f10x.o(i.SystemInit) refers to system_ch32f10x.o(i.SetSysClock) for SetSysClock
+    startup_ch32f10x.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_ch32f10x.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_ch32f10x.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_ch32f10x.o(RESET) refers to startup_ch32f10x.o(STACK) for __initial_sp
+    startup_ch32f10x.o(RESET) refers to startup_ch32f10x.o(.text) for Reset_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.NMI_Handler) for NMI_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.HardFault_Handler) for HardFault_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.MemManage_Handler) for MemManage_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.BusFault_Handler) for BusFault_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.UsageFault_Handler) for UsageFault_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.SVC_Handler) for SVC_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.DebugMon_Handler) for DebugMon_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.PendSV_Handler) for PendSV_Handler
+    startup_ch32f10x.o(RESET) refers to ch32f10x_it.o(i.SysTick_Handler) for SysTick_Handler
+    startup_ch32f10x.o(RESET) refers to bsp_adc.o(i.DMA1_Channel1_IRQHandler) for DMA1_Channel1_IRQHandler
+    startup_ch32f10x.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_ch32f10x.o(.text) refers to system_ch32f10x.o(i.SystemInit) for SystemInit
+    startup_ch32f10x.o(.text) refers to __main.o(!!!main) for __main
+    startup_ch32f10x.o(.text) refers to startup_ch32f10x.o(HEAP) for Heap_Mem
+    startup_ch32f10x.o(.text) refers to startup_ch32f10x.o(STACK) for Stack_Mem
+    debug.o(i.Delay_Init) refers to ch32f10x_misc.o(i.SysTick_CLKSourceConfig) for SysTick_CLKSourceConfig
+    debug.o(i.Delay_Init) refers to system_ch32f10x.o(.data) for SystemCoreClock
+    debug.o(i.Delay_Init) refers to debug.o(.data) for p_us
+    debug.o(i.USART_Printf_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    debug.o(i.USART_Printf_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    debug.o(i.USART_Printf_Init) refers to ch32f10x_usart.o(i.USART_Init) for USART_Init
+    debug.o(i.USART_Printf_Init) refers to ch32f10x_usart.o(i.USART_Cmd) for USART_Cmd
+    debug.o(i.delay_ms) refers to debug.o(.data) for p_ms
+    debug.o(i.delay_us) refers to debug.o(.data) for p_us
+    debug.o(i.fputc) refers to ch32f10x_usart.o(i.USART_GetFlagStatus) for USART_GetFlagStatus
+    debug.o(i.fputc) refers to ch32f10x_usart.o(i.USART_SendData) for USART_SendData
+    ch32f10x_adc.o(i.ADC_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_adc.o(i.Get_CalibrationValue) refers to ch32f10x_adc.o(i.ADC_ResetCalibration) for ADC_ResetCalibration
+    ch32f10x_adc.o(i.Get_CalibrationValue) refers to ch32f10x_adc.o(i.ADC_GetResetCalibrationStatus) for ADC_GetResetCalibrationStatus
+    ch32f10x_adc.o(i.Get_CalibrationValue) refers to ch32f10x_adc.o(i.ADC_StartCalibration) for ADC_StartCalibration
+    ch32f10x_adc.o(i.Get_CalibrationValue) refers to ch32f10x_adc.o(i.ADC_GetCalibrationStatus) for ADC_GetCalibrationStatus
+    ch32f10x_bkp.o(i.BKP_DeInit) refers to ch32f10x_rcc.o(i.RCC_BackupResetCmd) for RCC_BackupResetCmd
+    ch32f10x_can.o(i.CAN_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_can.o(i.CAN_GetITStatus) refers to ch32f10x_can.o(i.CheckITStatus) for CheckITStatus
+    ch32f10x_dac.o(i.DAC_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_flash.o(i.FLASH_EnableWriteProtection) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_EraseAllBank1Pages) refers to ch32f10x_flash.o(i.FLASH_WaitForLastBank1Operation) for FLASH_WaitForLastBank1Operation
+    ch32f10x_flash.o(i.FLASH_EraseAllPages) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_EraseOptionBytes) refers to ch32f10x_flash.o(i.FLASH_GetReadOutProtectionStatus) for FLASH_GetReadOutProtectionStatus
+    ch32f10x_flash.o(i.FLASH_EraseOptionBytes) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_ErasePage) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_ProgramHalfWord) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_ProgramOptionByteData) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_ProgramWord) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_ReadOutProtection) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_UserOptionByteConfig) refers to ch32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    ch32f10x_flash.o(i.FLASH_WaitForLastBank1Operation) refers to ch32f10x_flash.o(i.FLASH_GetBank1Status) for FLASH_GetBank1Status
+    ch32f10x_flash.o(i.FLASH_WaitForLastOperation) refers to ch32f10x_flash.o(i.FLASH_GetBank1Status) for FLASH_GetBank1Status
+    ch32f10x_gpio.o(i.GPIO_AFIODeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_gpio.o(i.GPIO_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_i2c.o(i.I2C_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_i2c.o(i.I2C_Init) refers to ch32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    ch32f10x_pwr.o(i.PWR_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_rcc.o(i.RCC_GetClocksFreq) refers to ch32f10x_rcc.o(.data) for APBAHBPrescTable
+    ch32f10x_rcc.o(i.RCC_WaitForHSEStartUp) refers to ch32f10x_rcc.o(i.RCC_GetFlagStatus) for RCC_GetFlagStatus
+    ch32f10x_rtc.o(i.RTC_SetAlarm) refers to ch32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    ch32f10x_rtc.o(i.RTC_SetAlarm) refers to ch32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    ch32f10x_rtc.o(i.RTC_SetCounter) refers to ch32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    ch32f10x_rtc.o(i.RTC_SetCounter) refers to ch32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    ch32f10x_rtc.o(i.RTC_SetPrescaler) refers to ch32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    ch32f10x_rtc.o(i.RTC_SetPrescaler) refers to ch32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    ch32f10x_spi.o(i.I2S_Init) refers to ch32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    ch32f10x_spi.o(i.SPI_I2S_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_spi.o(i.SPI_I2S_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_tim.o(i.TIM_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_tim.o(i.TIM_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_tim.o(i.TIM_ETRClockMode1Config) refers to ch32f10x_tim.o(i.TIM_ETRConfig) for TIM_ETRConfig
+    ch32f10x_tim.o(i.TIM_ETRClockMode2Config) refers to ch32f10x_tim.o(i.TIM_ETRConfig) for TIM_ETRConfig
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TI1_Config) for TI1_Config
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TIM_SetIC1Prescaler) for TIM_SetIC1Prescaler
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TI2_Config) for TI2_Config
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TIM_SetIC2Prescaler) for TIM_SetIC2Prescaler
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TI3_Config) for TI3_Config
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TIM_SetIC3Prescaler) for TIM_SetIC3Prescaler
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TI4_Config) for TI4_Config
+    ch32f10x_tim.o(i.TIM_ICInit) refers to ch32f10x_tim.o(i.TIM_SetIC4Prescaler) for TIM_SetIC4Prescaler
+    ch32f10x_tim.o(i.TIM_ITRxExternalClockConfig) refers to ch32f10x_tim.o(i.TIM_SelectInputTrigger) for TIM_SelectInputTrigger
+    ch32f10x_tim.o(i.TIM_PWMIConfig) refers to ch32f10x_tim.o(i.TI1_Config) for TI1_Config
+    ch32f10x_tim.o(i.TIM_PWMIConfig) refers to ch32f10x_tim.o(i.TIM_SetIC1Prescaler) for TIM_SetIC1Prescaler
+    ch32f10x_tim.o(i.TIM_PWMIConfig) refers to ch32f10x_tim.o(i.TI2_Config) for TI2_Config
+    ch32f10x_tim.o(i.TIM_PWMIConfig) refers to ch32f10x_tim.o(i.TIM_SetIC2Prescaler) for TIM_SetIC2Prescaler
+    ch32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to ch32f10x_tim.o(i.TI2_Config) for TI2_Config
+    ch32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to ch32f10x_tim.o(i.TI1_Config) for TI1_Config
+    ch32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to ch32f10x_tim.o(i.TIM_SelectInputTrigger) for TIM_SelectInputTrigger
+    ch32f10x_usart.o(i.USART_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    ch32f10x_usart.o(i.USART_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    ch32f10x_usart.o(i.USART_Init) refers to ch32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    ch32f10x_usb.o(i.USB_DeviceInit) refers to ch32f10x_usb.o(i.USB_Device_Endp_Init) for USB_Device_Endp_Init
+    ch32f10x_usb.o(i.USB_Device_Endp_Init) refers to ch32f10x_usb.o(.data) for pEP0_RAM_Addr
+    ch32f10x_usb_host.o(i.AnalyzeRootHub) refers to ch32f10x_usb_host.o(i.DisableRootHubPort) for DisableRootHubPort
+    ch32f10x_usb_host.o(i.AnalyzeRootHub) refers to ch32f10x_usb_host.o(.bss) for ThisUsbDev
+    ch32f10x_usb_host.o(i.CopySetupReqPkg) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.CtrlClearEndpStall) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlClearEndpStall) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlClearEndpStall) refers to ch32f10x_usb_host.o(.constdata) for SetupClrEndpStall
+    ch32f10x_usb_host.o(i.CtrlClearEndpStall) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.CtrlGetConfigDescr) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlGetConfigDescr) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlGetConfigDescr) refers to ch32f10x_usb_host.o(.constdata) for SetupGetCfgDescr
+    ch32f10x_usb_host.o(i.CtrlGetConfigDescr) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.CtrlGetDeviceDescr) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlGetDeviceDescr) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlGetDeviceDescr) refers to ch32f10x_usb_host.o(.data) for UsbDevEndp0Size
+    ch32f10x_usb_host.o(i.CtrlGetDeviceDescr) refers to ch32f10x_usb_host.o(.constdata) for SetupGetDevDescr
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to ch32f10x_usb_host.o(i.SetHostUsbAddr) for SetHostUsbAddr
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to debug.o(i.delay_ms) for delay_ms
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to ch32f10x_usb_host.o(.constdata) for SetupSetUsbAddr
+    ch32f10x_usb_host.o(i.CtrlSetUsbAddress) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.CtrlSetUsbConfig) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlSetUsbConfig) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlSetUsbConfig) refers to ch32f10x_usb_host.o(.constdata) for SetupSetUsbConfig
+    ch32f10x_usb_host.o(i.CtrlSetUsbConfig) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.CtrlSetUsbIntercace) refers to ch32f10x_usb_host.o(i.CopySetupReqPkg) for CopySetupReqPkg
+    ch32f10x_usb_host.o(i.CtrlSetUsbIntercace) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.CtrlSetUsbIntercace) refers to ch32f10x_usb_host.o(.constdata) for SetupSetUsbInterface
+    ch32f10x_usb_host.o(i.CtrlSetUsbIntercace) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.DisableRootHubPort) refers to ch32f10x_usb_host.o(.bss) for ThisUsbDev
+    ch32f10x_usb_host.o(i.EnableRootHubPort) refers to ch32f10x_usb_host.o(.bss) for ThisUsbDev
+    ch32f10x_usb_host.o(i.HostCtrlTransfer) refers to debug.o(i.delay_us) for delay_us
+    ch32f10x_usb_host.o(i.HostCtrlTransfer) refers to ch32f10x_usb_host.o(i.USBHostTransact) for USBHostTransact
+    ch32f10x_usb_host.o(i.HostCtrlTransfer) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.HubClearPortFeature) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.HubClearPortFeature) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.HubGetPortStatus) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.HubGetPortStatus) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.HubGetPortStatus) refers to ch32f10x_usb_host.o(.bss) for Com_Buffer
+    ch32f10x_usb_host.o(i.HubSetPortFeature) refers to ch32f10x_usb_host.o(i.HostCtrlTransfer) for HostCtrlTransfer
+    ch32f10x_usb_host.o(i.HubSetPortFeature) refers to ch32f10x_usb_host.o(.data) for pHOST_TX_RAM_Addr
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.ResetRootHubPort) for ResetRootHubPort
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to debug.o(i.delay_ms) for delay_ms
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.EnableRootHubPort) for EnableRootHubPort
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.DisableRootHubPort) for DisableRootHubPort
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.SetUsbSpeed) for SetUsbSpeed
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.CtrlGetDeviceDescr) for CtrlGetDeviceDescr
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.CtrlSetUsbAddress) for CtrlSetUsbAddress
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.CtrlGetConfigDescr) for CtrlGetConfigDescr
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(i.CtrlSetUsbConfig) for CtrlSetUsbConfig
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(.bss) for ThisUsbDev
+    ch32f10x_usb_host.o(i.InitRootDevice) refers to ch32f10x_usb_host.o(.constdata) for SetupSetUsbAddr
+    ch32f10x_usb_host.o(i.ResetRootHubPort) refers to ch32f10x_usb_host.o(i.SetHostUsbAddr) for SetHostUsbAddr
+    ch32f10x_usb_host.o(i.ResetRootHubPort) refers to ch32f10x_usb_host.o(i.SetUsbSpeed) for SetUsbSpeed
+    ch32f10x_usb_host.o(i.ResetRootHubPort) refers to debug.o(i.delay_ms) for delay_ms
+    ch32f10x_usb_host.o(i.ResetRootHubPort) refers to debug.o(i.delay_us) for delay_us
+    ch32f10x_usb_host.o(i.ResetRootHubPort) refers to ch32f10x_usb_host.o(.data) for UsbDevEndp0Size
+    ch32f10x_usb_host.o(i.USBHostTransact) refers to ch32f10x_usb_host.o(i.AnalyzeRootHub) for AnalyzeRootHub
+    ch32f10x_usb_host.o(i.USBHostTransact) refers to debug.o(i.delay_us) for delay_us
+    ch32f10x_usb_host.o(i.USBHostTransact) refers to ch32f10x_usb_host.o(.data) for FoundNewDev
+    ch32f10x_usb_host.o(i.USBHostTransact) refers to ch32f10x_usb_host.o(.bss) for ThisUsbDev
+    ch32f10x_usb_host.o(i.USB_HostInit) refers to ch32f10x_usb_host.o(i.DisableRootHubPort) for DisableRootHubPort
+    ch32f10x_usb_host.o(i.USB_HostInit) refers to ch32f10x_usb_host.o(.data) for pHOST_RX_RAM_Addr
+    ch32f10x_wwdg.o(i.WWDG_DeInit) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    corealgo.o(i.MorseTree_Init) refers to corealgo.o(i.createMorseTree) for createMorseTree
+    corealgo.o(i.MorseTree_Init) refers to corealgo.o(i.insertMorseCode) for insertMorseCode
+    corealgo.o(i.MorseTree_Init) refers to corealgo.o(.bss) for MorseTreeRoot
+    corealgo.o(i.createMorseTree) refers to h1_alloc.o(.text) for malloc
+    corealgo.o(i.freeMorseTree) refers to h1_free.o(.text) for free
+    corealgo.o(i.insertMorseCode) refers to corealgo.o(i.createMorseTree) for createMorseTree
+    corealgo.o(.data) refers to corealgo.o(.conststring) for .conststring
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_dac.o(i.DAC_Init) for DAC_Init
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_dac.o(i.DAC_Cmd) for DAC_Cmd
+    dac_buzz.o(i.DAC_BUZZ_Init) refers to ch32f10x_dac.o(i.DAC_DMACmd) for DAC_DMACmd
+    dac_buzz.o(i.DAC_MUSIC_Init) refers to dac_buzz.o(i.DAC_BUZZ_Init) for DAC_BUZZ_Init
+    dac_buzz.o(i.DAC_MUSIC_Init) refers to dac_buzz.o(i.DAC1_DMA_Init) for DAC1_DMA_Init
+    dac_buzz.o(i.DAC_MUSIC_Init) refers to dac_buzz.o(i.TIM3_DAC_Init) for TIM3_DAC_Init
+    dac_buzz.o(i.TIM3_DAC_Init) refers to ch32f10x_rcc.o(i.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
+    dac_buzz.o(i.TIM3_DAC_Init) refers to ch32f10x_tim.o(i.TIM_TimeBaseInit) for TIM_TimeBaseInit
+    dac_buzz.o(i.TIM3_DAC_Init) refers to ch32f10x_tim.o(i.TIM_SelectOutputTrigger) for TIM_SelectOutputTrigger
+    dac_buzz.o(i.TIM3_DAC_Init) refers to ch32f10x_tim.o(i.TIM_Cmd) for TIM_Cmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_rcc.o(i.RCC_ADCCLKConfig) for RCC_ADCCLKConfig
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_DeInit) for ADC_DeInit
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_Init) for ADC_Init
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_RegularChannelConfig) for ADC_RegularChannelConfig
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_ExternalTrigConvCmd) for ADC_ExternalTrigConvCmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_DMACmd) for ADC_DMACmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_Cmd) for ADC_Cmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_ResetCalibration) for ADC_ResetCalibration
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_GetResetCalibrationStatus) for ADC_GetResetCalibrationStatus
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_StartCalibration) for ADC_StartCalibration
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_GetCalibrationStatus) for ADC_GetCalibrationStatus
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.Get_CalibrationValue) for Get_CalibrationValue
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to ch32f10x_adc.o(i.ADC_SoftwareStartConvCmd) for ADC_SoftwareStartConvCmd
+    bsp_adc.o(i.BSP_ADC_Base_Init) refers to bsp_adc.o(.data) for Calibrattion_Val
+    bsp_adc.o(i.BSP_ADC_Init) refers to bsp_adc.o(i.BSP_ADC_NVIC_Config) for BSP_ADC_NVIC_Config
+    bsp_adc.o(i.BSP_ADC_Init) refers to bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) for BSP_DMA_ADC_Tx_Init
+    bsp_adc.o(i.BSP_ADC_Init) refers to bsp_adc.o(i.BSP_ADC_Base_Init) for BSP_ADC_Base_Init
+    bsp_adc.o(i.BSP_ADC_NVIC_Config) refers to ch32f10x_misc.o(i.NVIC_Init) for NVIC_Init
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to ch32f10x_rcc.o(i.RCC_AHBPeriphClockCmd) for RCC_AHBPeriphClockCmd
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to ch32f10x_dma.o(i.DMA_DeInit) for DMA_DeInit
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to ch32f10x_dma.o(i.DMA_Init) for DMA_Init
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to ch32f10x_dma.o(i.DMA_Cmd) for DMA_Cmd
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to ch32f10x_dma.o(i.DMA_ITConfig) for DMA_ITConfig
+    bsp_adc.o(i.BSP_DMA_ADC_Tx_Init) refers to bsp_adc.o(.bss) for ADC_Buffer
+    bsp_adc.o(i.DMA1_Channel1_IRQHandler) refers to ch32f10x_dma.o(i.DMA_GetITStatus) for DMA_GetITStatus
+    bsp_adc.o(i.DMA1_Channel1_IRQHandler) refers to ch32f10x_dma.o(i.DMA_ClearITPendingBit) for DMA_ClearITPendingBit
+    key.o(i.Button_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    key.o(i.Button_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    key.o(i.Button_Scan) refers to debug.o(i.delay_ms) for delay_ms
+    key.o(i.Button_Scan) refers to key.o(.data) for BUTTON_up
+    key.o(i.DKEY_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    key.o(i.DKEY_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    oled.o(i.OLED_Clear) refers to oled.o(.bss) for OLED_GRAM
+    oled.o(i.OLED_Display_Off) refers to oled.o(i.OLED_WR_Byte) for OLED_WR_Byte
+    oled.o(i.OLED_Display_On) refers to oled.o(i.OLED_WR_Byte) for OLED_WR_Byte
+    oled.o(i.OLED_DrawPoint) refers to oled.o(.bss) for OLED_GRAM
+    oled.o(i.OLED_DrawRect) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_Fill) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_Init) refers to ch32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    oled.o(i.OLED_Init) refers to ch32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    oled.o(i.OLED_Init) refers to ch32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    oled.o(i.OLED_Init) refers to oled.o(i.OLED_WR_Byte) for OLED_WR_Byte
+    oled.o(i.OLED_Init) refers to oled.o(i.OLED_Clear) for OLED_Clear
+    oled.o(i.OLED_Init) refers to oled.o(i.OLED_Display_On) for OLED_Display_On
+    oled.o(i.OLED_Refresh_Gram) refers to oled.o(i.OLED_WR_Byte) for OLED_WR_Byte
+    oled.o(i.OLED_Refresh_Gram) refers to oled.o(.bss) for OLED_GRAM
+    oled.o(i.OLED_Show3FNum) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    oled.o(i.OLED_Show3FNum) refers to oled.o(i.OLED_ShowString) for OLED_ShowString
+    oled.o(i.OLED_Show3FNum) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    oled.o(i.OLED_Show3FNum) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    oled.o(i.OLED_Show3FNum) refers to ffixu.o(x$fpl$ffixu) for __aeabi_f2uiz
+    oled.o(i.OLED_Show3FNum) refers to oled.o(i.OLED_ShowNum) for OLED_ShowNum
+    oled.o(i.OLED_Show3FNum) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
+    oled.o(i.OLED_ShowCH_16) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_ShowCH_16) refers to oled.o(.data) for Ch16
+    oled.o(i.OLED_ShowCH_24) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_ShowCH_24) refers to oled.o(.data) for Ch24
+    oled.o(i.OLED_ShowCH_32) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_ShowCH_32) refers to oled.o(.data) for Ch32
+    oled.o(i.OLED_ShowChar) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    oled.o(i.OLED_ShowChar) refers to oled.o(.constdata) for asc2_1608
+    oled.o(i.OLED_ShowIntNum) refers to oled.o(i.OLED_ShowString) for OLED_ShowString
+    oled.o(i.OLED_ShowIntNum) refers to oled.o(i.OLED_ShowNum) for OLED_ShowNum
+    oled.o(i.OLED_ShowNum) refers to oled.o(i.mypow) for mypow
+    oled.o(i.OLED_ShowNum) refers to oled.o(i.OLED_ShowChar) for OLED_ShowChar
+    oled.o(i.OLED_ShowString) refers to oled.o(i.OLED_Clear) for OLED_Clear
+    oled.o(i.OLED_ShowString) refers to oled.o(i.OLED_ShowChar) for OLED_ShowChar
+    oled.o(i.OLED_WR_Byte) refers to ch32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    oled.o(i.OLED_WR_Byte) refers to ch32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    malloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    malloc.o(.text) refers (Special) to init_alloc.o(.text) for _init_alloc
+    malloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    malloc.o(.text) refers to heapstubs.o(.text) for __Heap_Alloc
+    free.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    free.o(.text) refers to heapstubs.o(.text) for __Heap_Free
+    h1_alloc.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    h1_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_alloc.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_alloc_mt.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    h1_alloc_mt.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_alloc_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_free_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._FDIterate) refers to heap2.o(.conststring) for .conststring
+    heap2.o(i.___Heap_ProvideMemory$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i.___Heap_ProvideMemory$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i.___Heap_Stats$realtime) refers to heap2.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2.o(i.___Heap_Valid$realtime) refers to heap2.o(i._FDIterate) for _FDIterate
+    heap2.o(i.___Heap_Valid$realtime) refers to heap2.o(.conststring) for .conststring
+    heap2.o(i._free$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._free$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._free$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._malloc$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2.o(i._malloc$realtime) refers to init_alloc.o(.text) for __Heap_Full
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._posix_memalign$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2.o(i._posix_memalign$realtime) refers to init_alloc.o(.text) for __Heap_Full
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._realloc$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc$realtime) refers to h1_free.o(.text) for free
+    heap2.o(i._realloc$realtime) refers to h1_alloc.o(.text) for malloc
+    heap2.o(i._realloc$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._realloc$realtime) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    heap2mt.o(i._FDIterate) refers to heap2mt.o(.conststring) for .conststring
+    heap2mt.o(i.___Heap_Initialize$realtime$concurrent) refers to mutex_dummy.o(.text) for _mutex_initialize
+    heap2mt.o(i.___Heap_ProvideMemory$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i.___Heap_ProvideMemory$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i.___Heap_Stats$realtime$concurrent) refers to heap2mt.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2mt.o(i.___Heap_Valid$realtime$concurrent) refers to heap2mt.o(i._FDIterate) for _FDIterate
+    heap2mt.o(i.___Heap_Valid$realtime$concurrent) refers to heap2mt.o(.conststring) for .conststring
+    heap2mt.o(i._free$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._free$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._free$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._malloc$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2mt.o(i._malloc$realtime$concurrent) refers to init_alloc.o(.text) for __Heap_Full
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to init_alloc.o(.text) for __Heap_Full
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._realloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc$realtime$concurrent) refers to h1_free.o(.text) for free
+    heap2mt.o(i._realloc$realtime$concurrent) refers to h1_alloc.o(.text) for malloc
+    heap2mt.o(i._realloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._realloc$realtime$concurrent) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    __2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    __2printf.o(.text) refers to debug.o(.data) for __stdout
+    noretval__2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    noretval__2printf.o(.text) refers to debug.o(.data) for __stdout
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    fdiv.o(x$fpl$frdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$frdiv) refers to fdiv.o(x$fpl$fdiv) for _fdiv1
+    fdiv.o(x$fpl$fdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$fdiv) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fdiv.o(x$fpl$fdiv) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffix.o(x$fpl$ffix) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffix.o(x$fpl$ffix) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffix.o(x$fpl$ffixr) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffix.o(x$fpl$ffixr) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffixu.o(x$fpl$ffixu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffixu.o(x$fpl$ffixu) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffixu.o(x$fpl$ffixur) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffixu.o(x$fpl$ffixur) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fleqf.o(x$fpl$fleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fleqf.o(x$fpl$fleqf) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fleqf.o(x$fpl$fleqf) refers to fcmpi.o(x$fpl$fcmpinf) for __fpl_fcmp_Inf
+    fmul.o(x$fpl$fmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fmul.o(x$fpl$fmul) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fmul.o(x$fpl$fmul) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    rt_heap_descriptor.o(.text) refers to rt_heap_descriptor.o(.bss) for __rt_heap_descriptor_data
+    rt_heap_descriptor_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    init_alloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    init_alloc.o(.text) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000005) for __rt_lib_init_heap_2
+    init_alloc.o(.text) refers (Special) to maybetermalloc1.o(.emb_text) for _maybe_terminate_alloc
+    init_alloc.o(.text) refers to h1_extend.o(.text) for __Heap_ProvideMemory
+    init_alloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    init_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    init_alloc.o(.text) refers to h1_init.o(.text) for __Heap_Initialize
+    h1_init_mt.o(.text) refers to mutex_dummy.o(.text) for _mutex_initialize
+    _printf_char_file.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    _printf_char_file.o(.text) refers to ferror.o(.text) for ferror
+    _printf_char_file.o(.text) refers to debug.o(i.fputc) for fputc
+    _get_argv.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv.o(.text) refers to h1_alloc.o(.text) for malloc
+    _get_argv.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libinit2.o(.ARM.Collect$$libinit$$00000005) refers (Weak) to init_alloc.o(.text) for _init_alloc
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000026) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000027) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    fcmpi.o(x$fpl$fcmpinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fnaninf.o(x$fpl$fnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fretinf.o(x$fpl$fretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to main.o(i.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    maybetermalloc2.o(.emb_text) refers (Special) to term_alloc.o(.text) for _terminate_alloc
+    h1_extend.o(.text) refers to h1_free.o(.text) for free
+    h1_extend_mt.o(.text) refers to h1_free_mt.o(.text) for _free_internal
+    _printf_char_common.o(.text) refers to __printf_nopercent.o(.text) for __printf
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    heapauxa.o(.text) refers to heapauxa.o(.data) for .data
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup_ch32f10x.o(.text) for __user_initial_stackheap
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    term_alloc.o(.text) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E) for __rt_lib_shutdown_heap_2
+    term_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    term_alloc.o(.text) refers to h1_final.o(.text) for __Heap_Finalize
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002C) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000002) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000A) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000011) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000033) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_user_alloc_1
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    libshutdown2.o(.ARM.Collect$$libshutdown$$0000000D) refers (Weak) to term_alloc.o(.text) for _terminate_alloc
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+
