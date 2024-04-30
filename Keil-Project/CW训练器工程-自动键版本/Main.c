@@ -250,7 +250,7 @@ int main( void )
 			// 绘制字母和滴答
 			OLED_ShowChar_2216(0,22,GLOBAL_CorrectLetter);
 			// 绘制点划
-			UI_DrawDitDah((char *)MorseDictionary_En[letter2num(GLOBAL_CorrectLetter)]);
+			UI_DrawDitDah((char *)MorseDictionary[letter2num(GLOBAL_CorrectLetter)]);
 			// 显示准确率
 			OLED_ShowCH_16(0,48,8);
 			OLED_ShowCH_16(16,48,9);
