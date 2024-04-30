@@ -22,7 +22,7 @@ void insertMorseCode(MorseNode* node, const char* code, char character);
 MorseNode* searchMorseCode(MorseNode* node, const char* code);
 void freeMorseTree(MorseNode* node);
 
-
+#define MAX_MORSE_LEN 7
 extern MorseNode MorseTreeRoot;
 extern void MorseTree_Init(void);
 extern char GetCharFromMorseCode(MorseNode* node, const char* code);
@@ -30,7 +30,7 @@ extern const char* MorseDictionary[];
 //extern const char* MorseDictionary_Num[];
 //extern const char* MorseDictionary_Symb[];
 extern const char* MorseStringAsLength[];
-extern const char* LetterNum;
+extern const char Letters[];
 
 #define CW_SEND_QUEUE_LENGTH 10
 extern void ClearStr(char *str, size_t length);

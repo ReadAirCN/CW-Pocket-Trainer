@@ -1,7 +1,7 @@
 #include "CW.h"
 #include <stdlib.h>
 
-// 顺序和LetterNum保持一致, 最后增加一个空字符串作为默认兜底值
+// 顺序和Letters保持一致, 最后增加一个空字符串作为默认兜底值
 const char* MorseDictionary[] = {
     ".-",   // A
     "-...", // B
@@ -70,12 +70,12 @@ const char* MorseStringAsLength[] = {
     //"$"
 };
 
-const char* LetterNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?!'\"()&:;/_=+-@";
+const char Letters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?!'\"()&:;/_=+-@";
 
 // 一个字母摩斯码
 u8 CW_Code_idx = 0;
-char CW_Code[7]={0};
-char CW_Code_last[7]={0};
+char CW_Code[MAX_MORSE_LEN]={0};
+char CW_Code_last[MAX_MORSE_LEN]={0};
 // 
 char CW_Letter;
 // 发送队列
@@ -83,7 +83,7 @@ u8 CW_Send_Queue_idx = 0;
 u8 CW_Send_Queue[CW_SEND_QUEUE_LENGTH]={0};
 
 MorseNode MorseTreeRoot;
-MorseNode MorseTreeNode[62];//子节点
+MorseNode MorseTreeNode[64];//子节点
 
 u8 node_index = 0;
 void ClearStr(char *str, size_t length) 
@@ -113,17 +113,17 @@ int generate_random_number(int min, int max)
 char num2letter(signed char num)
 {
     // 输入值必须在合法长度内
-    if (num < 0 || num >= strlen(LetterNum)) {
+    if (num < 0 || num >= strlen(Letters)) {
         return '\0'; // 如果输入不合法，返回空字符
     }
-    return LetterNum[num];
+    return Letters[num];
 }
 
 u8 letter2num(char ch)
 {
     u8 i = 0;
-    for (; i < strlen(LetterNum)-1; i++) {
-        if (LetterNum[i] == ch) {
+    for (; i < strlen(Letters); i++) {
+        if (Letters[i] == ch) {
             return i;
         }
     }
@@ -225,8 +225,8 @@ void MorseTree_Init(void)
     MorseNode* root = createMorseTree();;
 	
 	// 这里可以添加更多的莫斯电码
-    for (int i = 0; i < strlen(LetterNum); i++) {
-        insertMorseCode(root, MorseDictionary[i], LetterNum[i]);
+    for (int i = 0; i < strlen(Letters); i++) {
+        insertMorseCode(root, MorseDictionary[i], Letters[i]);
     }
 //    insertMorseCode(root, ".-", 'A');
 //    insertMorseCode(root, "-...", 'B');
