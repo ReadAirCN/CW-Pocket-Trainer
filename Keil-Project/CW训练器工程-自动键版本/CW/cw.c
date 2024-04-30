@@ -1,7 +1,8 @@
 #include "CW.h"
 #include <stdlib.h>
 
-const char* MorseDictionary_En[] = {
+// 顺序和LetterNum保持一致, 最后增加一个空字符串作为默认兜底值
+const char* MorseDictionary[] = {
     ".-",   // A
     "-...", // B
     "-.-.", // C
@@ -28,9 +29,6 @@ const char* MorseDictionary_En[] = {
     "-..-", // X
     "-.--", // Y
     "--..", // Z
-};
-
-const char* MorseDictionary_Num[] = {
     "-----",  // 0
     ".----",  // 1
     "..---",  // 2
@@ -40,13 +38,26 @@ const char* MorseDictionary_Num[] = {
     "-....",  // 6
     "--...",  // 7
     "---..",  // 8
-    "----."   // 9
-};
-
-const char* MorseDictionary_Symb[] = {
+    "----.",   // 9
     ".-.-.-",  // Full stop (.)
     "--..--",  // Comma (,)
     "..--..",  // Question mark (?)
+    "-.-.--",  // !
+    ".----.",  // '
+    ".-..-.",  // "
+    "-.--.",   // (
+    "-.--.-",  // )
+    ".-...",   // &
+    "---...",  // :
+    "-.-.-.",  // ;
+    "-..-.",   // /
+    "..--.-",  // _
+    "-...-",   // =
+    ".-.-.",   // +
+    "-....-",  // -
+    ".--.-.",   // @
+    // "...-..-" // $
+    ""
 };
 
 const char* MorseStringAsLength[] = {
@@ -54,9 +65,12 @@ const char* MorseStringAsLength[] = {
 	"AIMN",
 	"DGKORSUW",
 	"BCFHJLPQVXYZ",
-	"0123456789",
-	".,?"
+	"0123456789(&/=+",
+	".,?!'\"):;_-@"
+    //"$"
 };
+
+const char* LetterNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?!'\"()&:;/_=+-@";
 
 // 一个字母摩斯码
 u8 CW_Code_idx = 0;
@@ -88,52 +102,47 @@ void CopyStr(char *dest, const char *src, size_t destSize)
     dest[destSize - 1] = '\0'; // 手动添加终止符，防止溢出
 }
 
-// 函数：生成一个在[min, max]范围内的随机数
+// 函数：生成一个在[min, max)范围内的随机数
 int generate_random_number(int min, int max)
 {    
     // 生成随机数
-    int random_num = (rand() % (max - min + 1)) + min;
+    int random_num = (rand() % (max - min)) + min;
     return random_num;
 }
 
-char num2letter(signed char num) 
+char num2letter(signed char num)
 {
-    // 输入值必须在0-35之间
-    if (num < 0 || num > 35) {
+    // 输入值必须在合法长度内
+    if (num < 0 || num >= strlen(LetterNum)) {
         return '\0'; // 如果输入不合法，返回空字符
     }
-    char out;
-		// 如果输入在0-25之间，返回对应的大写字母
-    out = (num < 26)? ('A' + num):('0' + (num - 26));
-    return out;
+    return LetterNum[num];
 }
 
-u8 letter2num(char ch) 
+u8 letter2num(char ch)
 {
+    u8 i = 0;
+    for (; i < strlen(LetterNum)-1; i++) {
+        if (LetterNum[i] == ch) {
+            return i;
+        }
+    }
     // 如果是大写字母，返回0-25之间的一个数字
-    if (ch >= 'A' && ch <= 'Z') {
-        return ch - 'A';
-    }
+    //if (ch >= 'A' && ch <= 'Z') {
+    //    return ch - 'A';
+    //}
     // 如果是数字字符，返回26-35之间的一个数字
-    else if (ch >= '0' && ch <= '9') {
-        return ch - '0' + 26;
-    }
-    // 如果输入不合法，返回0
-    return 0;
+    //else if (ch >= '0' && ch <= '9') {
+    //    return ch - '0' + 26;
+    //}
+
+    // 如果输入不合法，返回最后一个(对应空串)
+    return i;
 }
 
 void letter2MorseCode(char ch,char* morsecode)
 {
-	    // 如果是大写字母，返回0-25之间的一个数字
-    if (ch >= 'A' && ch <= 'Z') {
-        strcpy(morsecode,MorseDictionary_En[ch - 'A']);
-    }
-    // 如果是数字字符，返回26-35之间的一个数字
-    else if (ch >= '0' && ch <= '9') {
-        strcpy(morsecode,MorseDictionary_Num[ch - '0']);
-    }
-    // 如果输入不合法，返回0
-    return;
+    strcpy(morsecode,MorseDictionary[letter2num(ch)]);
 }
 
 
@@ -216,43 +225,64 @@ void MorseTree_Init(void)
     MorseNode* root = createMorseTree();;
 	
 	// 这里可以添加更多的莫斯电码
-    insertMorseCode(root, ".-", 'A');
-    insertMorseCode(root, "-...", 'B');
-    insertMorseCode(root, "-.-.", 'C');
-	  insertMorseCode(root, "-..", 'D');
-    insertMorseCode(root, ".", 'E');
-    insertMorseCode(root, "..-.", 'F');
-    insertMorseCode(root, "--.", 'G');
-    insertMorseCode(root, "....", 'H');
-    insertMorseCode(root, "..", 'I');
-    insertMorseCode(root, ".---", 'J');
-    insertMorseCode(root, "-.-", 'K');
-    insertMorseCode(root, ".-..", 'L');
-    insertMorseCode(root, "--", 'M');
-    insertMorseCode(root, "-.", 'N');
-    insertMorseCode(root, "---", 'O');
-    insertMorseCode(root, ".--.", 'P');
-    insertMorseCode(root, "--.-", 'Q');
-    insertMorseCode(root, ".-.", 'R');
-    insertMorseCode(root, "...", 'S');
-    insertMorseCode(root, "-", 'T');
-    insertMorseCode(root, "..-", 'U');
-    insertMorseCode(root, "...-", 'V');
-    insertMorseCode(root, ".--", 'W');
-    insertMorseCode(root, "-..-", 'X');
-    insertMorseCode(root, "-.--", 'Y');
-    insertMorseCode(root, "--..", 'Z');
-		insertMorseCode(root, "-----", '0');
-		insertMorseCode(root, ".----", '1');
-		insertMorseCode(root, "..---", '2');
-		insertMorseCode(root, "...--", '3');
-		insertMorseCode(root, "....-", '4');
-		insertMorseCode(root, ".....", '5');
-		insertMorseCode(root, "-....", '6');
-		insertMorseCode(root, "--...", '7');
-		insertMorseCode(root, "---..", '8');
-		insertMorseCode(root, "----.", '9');
-		
+    for (int i = 0; i < strlen(LetterNum); i++) {
+        insertMorseCode(root, MorseDictionary[i], LetterNum[i]);
+    }
+//    insertMorseCode(root, ".-", 'A');
+//    insertMorseCode(root, "-...", 'B');
+//    insertMorseCode(root, "-.-.", 'C');
+//    insertMorseCode(root, "-..", 'D');
+//    insertMorseCode(root, ".", 'E');
+//    insertMorseCode(root, "..-.", 'F');
+//    insertMorseCode(root, "--.", 'G');
+//    insertMorseCode(root, "....", 'H');
+//    insertMorseCode(root, "..", 'I');
+//    insertMorseCode(root, ".---", 'J');
+//    insertMorseCode(root, "-.-", 'K');
+//    insertMorseCode(root, ".-..", 'L');
+//    insertMorseCode(root, "--", 'M');
+//    insertMorseCode(root, "-.", 'N');
+//    insertMorseCode(root, "---", 'O');
+//    insertMorseCode(root, ".--.", 'P');
+//    insertMorseCode(root, "--.-", 'Q');
+//    insertMorseCode(root, ".-.", 'R');
+//    insertMorseCode(root, "...", 'S');
+//    insertMorseCode(root, "-", 'T');
+//    insertMorseCode(root, "..-", 'U');
+//    insertMorseCode(root, "...-", 'V');
+//    insertMorseCode(root, ".--", 'W');
+//    insertMorseCode(root, "-..-", 'X');
+//    insertMorseCode(root, "-.--", 'Y');
+//    insertMorseCode(root, "--..", 'Z');
+//    insertMorseCode(root, "-----", '0');
+//    insertMorseCode(root, ".----", '1');
+//    insertMorseCode(root, "..---", '2');
+//    insertMorseCode(root, "...--", '3');
+//    insertMorseCode(root, "....-", '4');
+//    insertMorseCode(root, ".....", '5');
+//    insertMorseCode(root, "-....", '6');
+//    insertMorseCode(root, "--...", '7');
+//    insertMorseCode(root, "---..", '8');
+//    insertMorseCode(root, "----.", '9');
+//    insertMorseCode(root, ".-.-.-", '.');
+//    insertMorseCode(root, "--..--", ',');
+//    insertMorseCode(root, "..--..", '?');
+//    insertMorseCode(root, "-.-.--", '!');
+//    insertMorseCode(root, ".----.", '\'');
+//    insertMorseCode(root, ".-..-.", '"');
+//    insertMorseCode(root, "-.--.", '(');
+//    insertMorseCode(root, "-.--.-", ')');
+//    insertMorseCode(root, ".-...", '&');
+//    insertMorseCode(root, "---...", ':');
+//    insertMorseCode(root, "-.-.-.", ';');
+//    insertMorseCode(root, "-..-.", '/');
+//    insertMorseCode(root, "..--.-", '_');
+//    insertMorseCode(root, "-...-", '=');
+//    insertMorseCode(root, ".-.-.", '+');
+//    insertMorseCode(root, "-....-", '-');
+//    insertMorseCode(root, ".--.-.", '@');
+    // insertMorseCode(root, "...-..-", '$');
+
 	// 将搭建完成的树根节点传出
-		MorseTreeRoot = *root;
+    MorseTreeRoot = *root;
 }

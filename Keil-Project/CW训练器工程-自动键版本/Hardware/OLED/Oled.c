@@ -1,5 +1,6 @@
 #include "Oled.h"
 #include "OledFont.h"  	 
+#include "cw.h"
 
 //OLED的显存
 //存放格式如下.
@@ -183,7 +184,7 @@ void OLED_Fill(u8 x1,u8 y1,u8 x2,u8 y2,u8 dot)
 
 /*
 ********************************************************************************************************************
-*                  void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 size,u8 mode)
+*                  void OLED_ShowChar(u8 x,u8 y,char chr,u8 size,u8 mode)
 *
 *Description    :在指定位置显示一个字符
 *Arguments   : x:0~127   y:0~63
@@ -193,7 +194,7 @@ void OLED_Fill(u8 x1,u8 y1,u8 x2,u8 y2,u8 dot)
 *Notes       : none
 ********************************************************************************************************************
 */	   
-void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 size,u8 mode)
+void OLED_ShowChar(u8 x,u8 y,char chr,u8 size,u8 mode)
 {      			    
 	u8 temp,t,t1;
 	u8 y0=y;
@@ -373,7 +374,7 @@ void OLED_Show3FNum(u8 x,u8 y,float num,u8 lenf,u8 lenb,u8 size)
 }
 /*
 ********************************************************************************************************************
-*                  void OLED_ShowString(u8 x,u8 y,const u8 *p,u8 size)
+*                  void OLED_ShowString(u8 x,u8 y,const char *p,u8 size)
 *
 *Description    :在指定位置显示字符串
 *Arguments   :   x,y :起点坐标   x:0~127  y:0~63	
@@ -382,7 +383,7 @@ void OLED_Show3FNum(u8 x,u8 y,float num,u8 lenf,u8 lenb,u8 size)
 *Notes       : none
 ********************************************************************************************************************
 */		
-void OLED_ShowString(u8 x,u8 y,const u8 *p,u16 size)
+void OLED_ShowString(u8 x,u8 y,const char *p,u16 size)
 {	
     while((*p<='~')&&(*p>=' '))//判断是不是非法字符!
     {       
@@ -400,18 +401,17 @@ void OLED_ShowChar_2216(u8 x,u8 y,char letter)
 	u8 temp,t,t1;
 	u16 x0=x;
 	u8 *dzk;   
-	u8 no=0;
-	
-	if ((letter>='A')&&(letter<='Z'))
-	{
-		no = letter-'A';
-	}
-	else if ((letter>='0')&&(letter<='9'))
-	{
-		no = letter-'0'+26;
-	}
-	else 
-		no = 36; // 一个空字符串
+	u8 no=letter2num(letter);
+	//if ((letter>='A')&&(letter<='Z'))
+	//{
+	//	no = letter-'A';
+	//}
+	//else if ((letter>='0')&&(letter<='9'))
+	//{
+	//	no = letter-'0'+26;
+	//}
+	//else 
+	//	no = 36; // 一个空字符串
 	dzk=(u8*)asc2_2216[no];	//得到汉字编号对应的点阵库 
 	for(t=0;t<44;t++)
 	{   												   

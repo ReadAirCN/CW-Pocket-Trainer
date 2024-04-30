@@ -27,11 +27,11 @@ void OLED_Clear(void);//清屏函数
 void OLED_DrawPoint(u8 x,u8 y,u8 t);//画点函数
 void OLED_DrawRect(u8 x1,u8 y1,u8 x2,u8 y2);//画方框函数
 void OLED_Fill(u8 x1,u8 y1,u8 x2,u8 y2,u8 dot);//填充
-void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 size,u8 mode);//显示字符
+void OLED_ShowChar(u8 x,u8 y,char chr,u8 size,u8 mode);//显示字符
 void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size);//显示数字
 void OLED_ShowIntNum(u8 x,u8 y,int32_t num,u8 len,u8 size);//显示有符号数字
 void OLED_Show3FNum(u8 x,u8 y,float num,u8 lenf,u8 lenb,u8 size);//显示有符号浮点数字
-void OLED_ShowString(u8 x,u8 y,const u8 *p,u16 size);//
+void OLED_ShowString(u8 x,u8 y,const char *p,u16 size);//
 void OLED_ShowCH_16(u8 x,u8 y,u8 no);
 void OLED_ShowCH_24(u8 x,u8 y,u8 no);
 void OLED_ShowCH_32(u8 x,u8 y,u8 no);

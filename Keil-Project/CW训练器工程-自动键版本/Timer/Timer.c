@@ -366,7 +366,7 @@ void TASK_BlindType(void)
 		// 生成一个需要拍发的字母
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
-			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,35));
+			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,strlen(LetterNum)));
 			GLOBAL_FLAG_NewLetter = 0;
 		}
 		// 提示音播放设置（播放中不做其他操作）
@@ -511,7 +511,7 @@ void TASK_ListenType(void)
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
 			// 正确字母
-			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,35));
+			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,strlen(LetterNum)));
 			// 正确字母的莫斯字符串
 			letter2MorseCode(GLOBAL_CorrectLetter,CorrectLetterMorseString);
 			// 正确字母的莫斯字符串长度
@@ -521,7 +521,7 @@ void TASK_ListenType(void)
 			// 正确字母的莫斯字符串初始索引
 			MorseCodeToPlay_index = 0;
 			// 生成随机错误字母
-			WrongLetterIndex = generate_random_number(0,SameLengthString_length-1);
+			WrongLetterIndex = generate_random_number(0,SameLengthString_length);
 			WrongLetter = MorseStringAsLength[MorseCodeToPlay_length-1][WrongLetterIndex];
 			if(WrongLetter==GLOBAL_CorrectLetter)
 				WrongLetter = MorseStringAsLength[MorseCodeToPlay_length-1][(WrongLetterIndex+1)%SameLengthString_length];
