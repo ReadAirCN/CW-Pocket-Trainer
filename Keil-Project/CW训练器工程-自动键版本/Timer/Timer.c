@@ -118,11 +118,11 @@ void TASK_FreeType(void)
 		// 滴答配置
 		if (countdown_slient_ms == 0)
 		{
-			if (CW_Code_idx>=6)
+			if (CW_Code_idx>=MAX_MORSE_LEN)
 			{
 				CW_Code_idx = 0;
 				// 清空当前字母的点划码字符串
-				ClearStr(CW_Code,7);
+				ClearStr(CW_Code,MAX_MORSE_LEN);
 			}
 			// 捏发处理
 			if ((DIT_PRESS_GLOBAL==1)&&(DAH_PRESS_GLOBAL==1))
@@ -175,8 +175,8 @@ void TASK_FreeType(void)
 				else if (CW_Code_idx != 0)//停顿视为一个字母
 				{
 					CW_Letter = GetCharFromMorseCode(&MorseTreeRoot,CW_Code);
-					CopyStr(CW_Code_last, CW_Code, 7);
-					ClearStr(CW_Code,7);
+					CopyStr(CW_Code_last, CW_Code, MAX_MORSE_LEN);
+					ClearStr(CW_Code,MAX_MORSE_LEN);
 					countdown_word_ms = time_space_word;
 				}
 				else if (countdown_word_ms > 0 )
@@ -222,7 +222,7 @@ void TASK_RandType(void)
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
 			GLOBAL_CorrectLetter = num2letter(letter_index);
-			letter_index = (++letter_index)%36;
+			letter_index = (++letter_index)%strlen(Letters);
 			GLOBAL_FLAG_NewLetter = 0;
 		}
 		// 提示音播放设置（播放中不做其他操作）
@@ -253,11 +253,11 @@ void TASK_RandType(void)
 			// 滴答配置（如果不在滴答播放和必要停顿期间）
 			if (countdown_slient_ms == 0)
 			{
-				if (CW_Code_idx>=6)
+				if (CW_Code_idx>=MAX_MORSE_LEN)
 				{
 					CW_Code_idx = 0;
 					// 清空当前字母的点划码字符串
-					ClearStr(CW_Code,7);
+					ClearStr(CW_Code,MAX_MORSE_LEN);
 				}
 				// 捏发处理
 				if ((DIT_PRESS_GLOBAL==1)&&(DAH_PRESS_GLOBAL==1))
@@ -313,9 +313,9 @@ void TASK_RandType(void)
 						// 获得敲出的字母
 						CW_Letter = GetCharFromMorseCode(&MorseTreeRoot,CW_Code);
 						// 将当前字母的点划码赋值给CW_Code_last
-						CopyStr(CW_Code_last, CW_Code, 7);
+						CopyStr(CW_Code_last, CW_Code, MAX_MORSE_LEN);
 						// 清空当前字母的点划码字符串
-						ClearStr(CW_Code,7);
+						ClearStr(CW_Code,MAX_MORSE_LEN);
 						// 拍发字母总数增加
 						cnt_type_letters++;			
 						// 判断字母是否正确
@@ -366,7 +366,7 @@ void TASK_BlindType(void)
 		// 生成一个需要拍发的字母
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
-			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,35));
+			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,strlen(Letters)));
 			GLOBAL_FLAG_NewLetter = 0;
 		}
 		// 提示音播放设置（播放中不做其他操作）
@@ -449,9 +449,9 @@ void TASK_BlindType(void)
 					// 获得敲出的字母
 					CW_Letter = GetCharFromMorseCode(&MorseTreeRoot,CW_Code);
 					// 将当前字母的点划码赋值给CW_Code_last
-					CopyStr(CW_Code_last, CW_Code, 7);
+					CopyStr(CW_Code_last, CW_Code, MAX_MORSE_LEN);
 					// 清空当前字母的点划码字符串
-					ClearStr(CW_Code,7);
+					ClearStr(CW_Code,MAX_MORSE_LEN);
 					// 拍发字母总数增加
 					cnt_type_letters++;			
 					// 判断字母是否正确
@@ -511,7 +511,7 @@ void TASK_ListenType(void)
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
 			// 正确字母
-			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,35));
+			GLOBAL_CorrectLetter = num2letter(generate_random_number(0,strlen(Letters)));
 			// 正确字母的莫斯字符串
 			letter2MorseCode(GLOBAL_CorrectLetter,CorrectLetterMorseString);
 			// 正确字母的莫斯字符串长度
@@ -521,7 +521,7 @@ void TASK_ListenType(void)
 			// 正确字母的莫斯字符串初始索引
 			MorseCodeToPlay_index = 0;
 			// 生成随机错误字母
-			WrongLetterIndex = generate_random_number(0,SameLengthString_length-1);
+			WrongLetterIndex = generate_random_number(0,SameLengthString_length);
 			WrongLetter = MorseStringAsLength[MorseCodeToPlay_length-1][WrongLetterIndex];
 			if(WrongLetter==GLOBAL_CorrectLetter)
 				WrongLetter = MorseStringAsLength[MorseCodeToPlay_length-1][(WrongLetterIndex+1)%SameLengthString_length];
