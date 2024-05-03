@@ -9,7 +9,7 @@ u8 DIT_PRESS_GLOBAL = 0;
 u8 DAH_PRESS_GLOBAL = 0;
 
 // ÒôÁ¿Ë÷Òý
-u8 VolumeList_index = 5;
+u8 VolumeList_index[2] = {6,3};
 
 u8 GLOBAL_SendSpeed = 1;
 u8 GLOBAL_WorkMode = 1;
