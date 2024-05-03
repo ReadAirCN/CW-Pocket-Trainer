@@ -14,7 +14,7 @@ void UI_VolumeDisplay(u8 Volume)
 	OLED_Fill(32,48,96,63,0);
 	OLED_ShowCH_16(0,48,11);OLED_ShowCH_16(16,48,12);
 	OLED_DrawRect(40,48,96,63);
-	for(i=0;i<=Volume;i++)
+	for(i=0;i<Volume;i++)
 	{
 		OLED_Fill(42+6*i,50,46+6*i,61,1);
 	}
