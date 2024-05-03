@@ -39,7 +39,7 @@ extern u8 GLOBAL_SendSpeed;
 extern u8 GLOBAL_WorkMode;
 extern u8 GLOBAL_FLAG_WORKING;
 extern u8 GLOBAL_FLAG_NewLetter;
-extern u8 VolumeList_index;
+extern u8 VolumeList_index[2];
 // 随机拍发，随机盲发，听译模式全局变量
 extern char GLOBAL_CorrectLetter;
 extern float GLOBAL_ratio_correct;

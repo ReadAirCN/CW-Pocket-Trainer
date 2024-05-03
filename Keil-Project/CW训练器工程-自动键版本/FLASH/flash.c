@@ -11,7 +11,7 @@ typedef union
 
 
 
-System_Setting_Info_TypeDef System_Setting_Info_default={"10",0,"BD4XUW",SendSpeed_Slow,5,};
+System_Setting_Info_TypeDef System_Setting_Info_default={"10",0,"BD4XUW",SendSpeed_Slow,0x36,};
 System_Setting_Info_TypeDef System_Setting_Info;
 
 //// 这个联合体用于转换格式类型
@@ -24,7 +24,16 @@ u8 MakeValid_SendSpeed(u8 data)
 
 u8 MakeValid_Volume(u8 data)
 {
-	return (data>=9) ? 5 : data ;
+    u8 speaker = data&0x0F;
+    if (speaker > 9) {
+        speaker = 6;
+    }
+    u8 ear_phone = data >> 4;
+    if (ear_phone > 9) {
+        ear_phone = 3;
+    }
+
+    return speaker + (ear_phone << 4);
 }
 
 void BSP_Flash_Read_Info(void)
@@ -38,14 +47,16 @@ void BSP_Flash_Read_Info(void)
 		}
 		// 从设置中加载参数
 		GLOBAL_SendSpeed = MakeValid_SendSpeed(System_Setting_Info.user_speed);
-		VolumeList_index = MakeValid_Volume(System_Setting_Info.user_volume);
+		u8 volume = MakeValid_Volume(System_Setting_Info.user_volume);
+        VolumeList_index[0] = volume&0x0F;
+        VolumeList_index[1] = volume>>4;
 }
 
 void Update_System_Setting(void)
 {
 	// 存入当前设置
 	System_Setting_Info.user_speed = GLOBAL_SendSpeed;
-	System_Setting_Info.user_volume = VolumeList_index;
+	System_Setting_Info.user_volume = VolumeList_index[0] + (VolumeList_index[1] << 4);
 }
 void BSP_Flash_Write_Info(void)
 {	

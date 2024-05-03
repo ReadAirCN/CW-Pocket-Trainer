@@ -25,7 +25,8 @@
 
 
 // 音量幅值列表
-const float VolumeList[9]={0.0003,0.001,0.003,0.1,0.2,0.4,0.6,0.8,1};
+const float VolumeList[2][10]={{0,0.01,0.03,0.05,0.1,0.2,0.4,0.6,0.8,1},{0,0.0003,0.001,0.003,0.01,0.02,0.04,0.06,0.08,0.1}};
+
 // 音量改动标志位
 u8 VolumeChange_Flag = 0;
 // 音量修改标志位
@@ -58,11 +59,11 @@ void HardWare_Init(void)
 		TIM1_TASK_Init(1000-1,72-1);
 		delay_ms(10);
 		// Flash读写初始化
-		
+		BSP_Flash_Read_Info();
 		// DAC初始化
 		DAC_MUSIC_Init();
 		// 正弦波波以及调整音量
-		EarPhone_WAVE(WAV_DATA3,VolumeList[VolumeList_index]);
+		EarPhone_WAVE(WAV_DATA3,VolumeList[EarPhone_MODE_FLAG][VolumeList_index[EarPhone_MODE_FLAG]]);
 		VolumeModified_Flag = 1;
 		// 初始化随机数生成器
     srand((unsigned int)Battery_Voltage+TIM1->CNT);
@@ -77,7 +78,6 @@ int main( void )
 	HardWare_Init();
 
 	OLED_Refresh_Gram();
-	BSP_Flash_Read_Info();
 	
 	{/*更新时间设定*/
 	switch(GLOBAL_SendSpeed)
@@ -112,7 +112,7 @@ int main( void )
 //BSP_Flash_Write_Info();
 	
 	{ // 修复开机爆破音
-		EarPhone_WAVE(WAV_DATA3,VolumeList[VolumeList_index]);
+		EarPhone_WAVE(WAV_DATA3,VolumeList[EarPhone_MODE_FLAG][VolumeList_index[EarPhone_MODE_FLAG]]);
 		DAC_SetFreq(1000);
 		TIM_Cmd(TIM3, ENABLE);
 		AMP_SD = 0;
@@ -122,7 +122,7 @@ int main( void )
 		// 按键检测
 		key_value = Button_Scan();
 		// 强制打乱，可能没有意义
-		srand((unsigned int)Battery_Voltage+TIM1->CNT);
+		//srand((unsigned int)Battery_Voltage+TIM1->CNT);
 		
 		if (key_value == BUTTON_DEC_PRES)//切换拍发速度
 		{
@@ -210,9 +210,9 @@ int main( void )
 				if (VolumeModified_Flag == 0)
 				{
 					// 调整音量
-					EarPhone_WAVE(WAV_DATA3,VolumeList[VolumeList_index]);
+					EarPhone_WAVE(WAV_DATA3,VolumeList[EarPhone_MODE_FLAG][VolumeList_index[EarPhone_MODE_FLAG]]);
 					VolumeModified_Flag = 1;
-					UI_VolumeDisplay(VolumeList_index);
+					UI_VolumeDisplay(VolumeList_index[EarPhone_MODE_FLAG]);
 					OLED_Refresh_Gram();
 					TIM_Cmd(TIM3, ENABLE);
 					delay_ms(300);
@@ -223,13 +223,13 @@ int main( void )
 			{
 				if (DKEY_A == 0)//音量+
 				{
-					VolumeList_index = (VolumeList_index >= 8)?8:VolumeList_index +1;
+					VolumeList_index[EarPhone_MODE_FLAG] = (VolumeList_index[EarPhone_MODE_FLAG] >= 9)?9:VolumeList_index[EarPhone_MODE_FLAG] +1;
 					VolumeChange_Flag = 1;
 					VolumeModified_Flag = 0;
 				}
 				else	if (DKEY_B == 0)//音量-
 				{
-					VolumeList_index = (VolumeList_index == 0)?0:VolumeList_index -1;
+					VolumeList_index[EarPhone_MODE_FLAG] = (VolumeList_index[EarPhone_MODE_FLAG] == 0)?0:VolumeList_index[EarPhone_MODE_FLAG] -1;
 					VolumeChange_Flag = 1;
 					VolumeModified_Flag = 0;
 				}
@@ -303,20 +303,24 @@ int main( void )
 		UI_EarPhoneCheck();
 		// 自动保存检测
 		UI_AutoSaveSetting();
-		//耳机音量自动调低 仅首次进入执行
+		//耳机/喇叭音量切换
 		if ((EarphoneEnd_Voltage > 4050)&&(EarPhone_MODE_FLAG == 0))
 		{
 			EarPhone_MODE_FLAG = 1;
-			VolumeList_index = (VolumeList_index>2) ? 2 : VolumeList_index;
-			EarPhone_WAVE(WAV_DATA3,VolumeList[VolumeList_index]);
-			UI_VolumeDisplay(VolumeList_index);
+			EarPhone_WAVE(WAV_DATA3,VolumeList[EarPhone_MODE_FLAG][VolumeList_index[EarPhone_MODE_FLAG]]);
+			UI_VolumeDisplay(VolumeList_index[EarPhone_MODE_FLAG]);
 			OLED_Refresh_Gram();
 			delay_ms(250);
 			VolumeModified_Flag = 0;
 		}
-		else if (EarphoneEnd_Voltage < 4000)
+		else if ((EarphoneEnd_Voltage < 4000)&&(EarPhone_MODE_FLAG == 1))
 		{
 			EarPhone_MODE_FLAG = 0;
+            EarPhone_WAVE(WAV_DATA3,VolumeList[EarPhone_MODE_FLAG][VolumeList_index[EarPhone_MODE_FLAG]]);
+			UI_VolumeDisplay(VolumeList_index[EarPhone_MODE_FLAG]);
+			OLED_Refresh_Gram();
+			delay_ms(250);
+			VolumeModified_Flag = 0;
 		}
 		// 更新显存
 		OLED_Refresh_Gram();
