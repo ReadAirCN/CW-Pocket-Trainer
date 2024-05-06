@@ -264,7 +264,14 @@ int main( void )
 			// 绘制字母和滴答
 			OLED_ShowChar_2216(0,22,GLOBAL_CorrectLetter);
 			// 绘制点划
-			UI_DrawDitDah((char *)CW_Code);
+			if(GLOBAL_incorrect_counter >= TIPS_THD)
+			{
+				UI_DrawDitDah((char *)MorseDictionary[letter2num(GLOBAL_CorrectLetter)]);
+			}
+			else
+			{
+				UI_DrawDitDah((char *)CW_Code);
+			}
 			// 显示准确率
 			OLED_ShowCH_16(0,48,8);
 			OLED_ShowCH_16(16,48,9);

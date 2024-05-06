@@ -15,6 +15,7 @@
 #define TIME_DEFAULT_space_bit 				(TIME_DEFAULT_dit)
 #define TIME_DEFAULT_space_letter				(TIME_DEFAULT_dit * 3)
 #define TIME_DEFAULT_space_word			(TIME_DEFAULT_dit * 7)
+#define TIPS_THD	  2		//提示门限，超过两次错误即显示提示
 
 // 模式设置
 #define WorkMode_FreeType  (1)
@@ -45,6 +46,7 @@ extern float GLOBAL_ratio_correct;
 extern char GLOBAL_ChoiceA;
 extern char GLOBAL_ChoiceB;
 extern char GLOBAL_BottomString[17];
+extern u8 GLOBAL_incorrect_counter;
 
 #define PROI_DIT 1
 #define PROI_DAH 2
