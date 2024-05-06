@@ -5,6 +5,8 @@
 #include "oled_ui.h"
 #include "dac.h"
 
+#define RANDMODE	0 //随机拍发模式使用随机数
+
 u8 DIT_PRESS_GLOBAL = 0;
 u8 DAH_PRESS_GLOBAL = 0;
 
@@ -13,6 +15,8 @@ u8 VolumeList_index = 5;
 
 u8 GLOBAL_SendSpeed = 1;
 u8 GLOBAL_WorkMode = 1;
+
+u8 GLOBAL_incorrect_counter = 0;	//错误次数计数器
 
 u8 GLOBAL_FLAG_WORKING = 1;
 u8 GLOBAL_FLAG_NewLetter = 1;
@@ -221,8 +225,12 @@ void TASK_RandType(void)
 		// 生成一个需要拍发的字母
 		if (GLOBAL_FLAG_NewLetter==1)
 		{
-			GLOBAL_CorrectLetter = num2letter(letter_index);
-			letter_index = (++letter_index)%strlen(Letters);
+			#if RANDMODE
+				GLOBAL_CorrectLetter = num2letter(generate_random_number(0,strlen(Letters)));
+			#else
+				GLOBAL_CorrectLetter = num2letter(letter_index);
+				letter_index = (++letter_index)%strlen(Letters);
+			#endif
 			GLOBAL_FLAG_NewLetter = 0;
 		}
 		// 提示音播放设置（播放中不做其他操作）
@@ -465,12 +473,14 @@ void TASK_BlindType(void)
 						TIM_Cmd(TIM3, ENABLE);
 						// 生成下一个字母
 						GLOBAL_FLAG_NewLetter = 1;
+						GLOBAL_incorrect_counter = 0;
 					}
 					else // 拍发字母不正确
 					{
 						// 播放错误提示音乐
 						Flag_PlaySound = SOUND_NO;
 						countdown_prompt_sound_ms = 180;
+						GLOBAL_incorrect_counter++;
 						TIM_Cmd(TIM3, ENABLE);
 					}
 					// 更新准确率
