@@ -39,7 +39,7 @@ void HardWare_Init(void)
 		// 设置系统中断优先级分组
 		NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 
 		/* 串口调试初始化（发行版暂时不需要）*/
-		/* USART_Printf_Init(115200); */ 
+		/* USART_Printf_Init(115200); */
 		// OLED初始化
 		OLED_Init();
 		// 电池电压ADC初始化
@@ -56,6 +56,8 @@ void HardWare_Init(void)
 		MorseTree_Init();
 		// 定时器初始化(1000Hz)
 		TIM1_TASK_Init(1000-1,72-1);
+		// 初始化TIM2，使用TIM2的计数值作为随机数种子
+		TIM2_Randseed_Init(789,70);
 		delay_ms(10);
 		// Flash读写初始化
 		

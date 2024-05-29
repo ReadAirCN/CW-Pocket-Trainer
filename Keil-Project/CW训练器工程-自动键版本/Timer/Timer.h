@@ -60,6 +60,8 @@ extern u8 DAH_PRESS_GLOBAL;
 extern void TIM1_TASK_Init(u16 arr, u16 psc);
 extern void TIM1_UP_IRQHandler(void);
 
+extern void TIM2_Randseed_Init(u16 arr, u16 psc);
+
 void TASK_FreeType(void);  // 自由练习模式
 void TASK_BlindType(void); // 盲敲练习模式
 void TASK_RandType(void); // 教学练习模式		
