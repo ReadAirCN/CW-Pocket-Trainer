@@ -56,6 +56,8 @@ void HardWare_Init(void)
 		MorseTree_Init();
 		// 定时器初始化(1000Hz)
 		TIM1_TASK_Init(1000-1,72-1);
+		// 初始化TIM2，使用TIM2的计数值作为随机数种子
+		TIM2_Randseed_Init(789,70);
 		delay_ms(10);
 		// Flash读写初始化
 		
