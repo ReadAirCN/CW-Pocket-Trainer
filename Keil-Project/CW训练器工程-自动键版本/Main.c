@@ -39,7 +39,7 @@ void HardWare_Init(void)
 		// 设置系统中断优先级分组
 		NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 
 		/* 串口调试初始化（发行版暂时不需要）*/
-		/* USART_Printf_Init(115200); */
+		/* USART_Printf_Init(115200); */ 
 		// OLED初始化
 		OLED_Init();
 		// 电池电压ADC初始化

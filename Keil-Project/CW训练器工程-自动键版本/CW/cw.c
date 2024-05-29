@@ -106,7 +106,7 @@ void CopyStr(char *dest, const char *src, size_t destSize)
 int generate_random_number(int min, int max)
 {    
     // 生成随机数
-	srand((unsigned int)TIM2->CNT);
+    srand((unsigned int)TIM2->CNT);
     int random_num = (rand() % (max - min)) + min;
     return random_num;
 }
